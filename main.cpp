@@ -191,7 +191,7 @@ void main()
 
 		std::cout << (double)count / (double)count_all * 100.0 << " % " << std::endl;
 
-		if ((double)count / (double)count_all > 0.96) break;
+		if ((double)count / (double)count_all > 0.9) break; // takes more time to achieve higher rate
 	}
 	std::cout << std::endl;
 	std::cout << "End of training" << std::endl;

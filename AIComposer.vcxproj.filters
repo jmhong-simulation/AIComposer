@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{8849608e-fdee-4965-8a36-e5c6a9d73020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\sound_files">
+      <UniqueIdentifier>{e9cf9e9f-0bd6-4769-81dc-0896f2e3c51d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixMN.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NeuralNetwork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sound_files\25.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\25.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\26.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\26.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\27.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\27.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\28.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\28.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\29.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\29.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\30.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\30.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\31.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\31.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\32.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\32.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\33.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\33.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\34.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\34.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\35.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\35.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\36.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\36.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\37.MP3">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+    <Media Include="sound_files\37.wav">
+      <Filter>Resources\sound_files</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="my_play.txt">
+      <Filter>Resources</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

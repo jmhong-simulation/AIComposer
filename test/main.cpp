@@ -9,6 +9,7 @@
 	- aquire Wav data
 	- combine multiple channels to one array
 	- note length
+	- remove test folder
 
 	3. Train with it
 */

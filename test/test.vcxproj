@@ -134,7 +134,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\github-repository\AIComposer\SDL2_mixer-devel-2.0.1-VC\SDL2_mixer-2.0.1\include;C:\github-repository\AIComposer\SDL2-2.0.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\github-repository\AIComposer\craigsapp-midifile-462f55a\include;C:\github-repository\AIComposer\SDL2_mixer-devel-2.0.1-VC\SDL2_mixer-2.0.1\include;C:\github-repository\AIComposer\SDL2-2.0.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\Binasc.h" />
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\MidiEvent.h" />
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\MidiEventList.h" />
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\MidiFile.h" />
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\MidiMessage.h" />
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\Options.h" />
     <ClInclude Include="Array1D.h" />
     <ClInclude Include="MatrixMN.h" />
     <ClInclude Include="NeuralNetwork.h" />
@@ -153,6 +159,12 @@
     <ClInclude Include="VectorND.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\Binasc.cpp" />
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\MidiEvent.cpp" />
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\MidiEventList.cpp" />
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\MidiFile.cpp" />
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\MidiMessage.cpp" />
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\Options.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixMN.cpp" />
   </ItemGroup>

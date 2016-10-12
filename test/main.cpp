@@ -5,7 +5,10 @@
 	- replace play functions
 	
 	2. MIDI input and play
-	- aquire sample data (very simple one)
+	- aquire sample MIDI data (very simple one)
+	- aquire Wav data
+	- combine multiple channels to one array
+	- note length
 
 	3. Train with it
 */
@@ -21,6 +24,11 @@
 #pragma comment (lib, "winmm.lib")
 #include <windows.h>
 #include <mmsystem.h>
+
+#include "MidiFile.h"
+#include "Options.h"
+#include <iomanip>
+using namespace std;
 
 #define CLAMP(v, min, max)		((v) > (max) ? (max) : ((v) < (min) ? (min) : (v)))
 
@@ -120,16 +128,57 @@ int main(int argc, char *argv[])
 {
 	sound_player.init();
 
-	//TODO: read wave files
-	for (int i = 25; i <= 35; i++)
+	// read wave files
+	for (int i = 1; i <= 64; i++)
 	{
 		char filename[255];
-		std::sprintf(filename, "c:/github-repository/FMODTest/test/sound_files/%d.wav", i);
+		std::sprintf(filename, "C:/github-repository/AIComposer/sound_files/(%d).wav", i);
 
 		sound_player.addWav(std::to_string(i), std::string(filename));
 	}
 
+	//TODO: read midi file and play
 
+
+	MidiFile midifile;
+	midifile.read("./Etude_op10_n01.mid");
+
+	int tracks = midifile.getTrackCount();
+	cout << "TPQ: " << midifile.getTicksPerQuarterNote() << endl;
+	if (tracks > 1) {
+		cout << "TRACKS: " << tracks << endl;
+	}
+
+	for (int track = 0; track < tracks; track++)
+		//int track = 0; // print first track only
+	{
+		if (tracks > 1) {
+			cout << "\nTrack " << track << endl;
+		}
+		for (int event = 0; event < midifile[track].size(); event++) {
+			cout << dec << midifile[track][event].tick;
+			cout << '\t' << hex;\
+			/*
+			for (int i = 0; i<midifile[track][event].size(); i++) {
+				cout << dec << (int)midifile[track][event][i] << ' ';
+			}
+			cout << endl;
+			*/
+			if ((int)midifile[track][event][0] == 0x90) {
+				cout << dec << (int)midifile[track][event][1] << ' ';
+				sound_player.playSound(std::to_string((int)midifile[track][event][1]-12*5));
+				//myplaysoundnt((int)midifile[track][event][1]-60);
+				Sleep(100);
+			}
+			cout << endl;
+		}
+	}
+
+	int temp;
+	std::cin >> temp;
+
+
+	// initialize nn
 	nn_.initialize(7 * (8 + 1), 8 + 1, 1, 1);    // 8 keys + 1 length(0 to 7), input 7 histories
 
 	nn_.layer_type_act_[0] = 2;

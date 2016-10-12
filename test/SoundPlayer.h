@@ -93,7 +93,7 @@ public:
 		if (sound_library_.count(key_name) == 0)
 		{
 			std::cout << "Cannot find " << key_name << std::endl;
-			exit(1);
+			//exit(1);
 		}
 
 		Mix_PlayChannel(-1, sound_library_.find(key_name)->second, 0);

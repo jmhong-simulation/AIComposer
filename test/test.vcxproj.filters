@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="craigsapp">
+      <UniqueIdentifier>{90c47448-bc2d-460d-828f-4b22b52a8734}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array1D.h">
@@ -30,6 +33,24 @@
     <ClInclude Include="VectorND.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\Binasc.h">
+      <Filter>craigsapp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\MidiEvent.h">
+      <Filter>craigsapp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\MidiEventList.h">
+      <Filter>craigsapp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\MidiFile.h">
+      <Filter>craigsapp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\MidiMessage.h">
+      <Filter>craigsapp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\craigsapp-midifile-462f55a\include\Options.h">
+      <Filter>craigsapp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -37,6 +58,24 @@
     </ClCompile>
     <ClCompile Include="MatrixMN.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\Binasc.cpp">
+      <Filter>craigsapp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\MidiEvent.cpp">
+      <Filter>craigsapp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\MidiEventList.cpp">
+      <Filter>craigsapp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\MidiFile.cpp">
+      <Filter>craigsapp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\MidiMessage.cpp">
+      <Filter>craigsapp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\Options.cpp">
+      <Filter>craigsapp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 /*
 	TODO
-	1. SDL Wave play module upgrade
+	#1. SDL Wave play module upgrade
 	- copy from sample
 	- replace play functions
 	
@@ -18,13 +18,14 @@
 #include "VectorND.h"
 #include "NeuralNetwork.h"
 
-//#pragma comment (lib, "winmm.lib")
-//#include <windows.h>
-//#include <mmsystem.h>
-
-
+#pragma comment (lib, "winmm.lib")
+#include <windows.h>
+#include <mmsystem.h>
 
 #define CLAMP(v, min, max)		((v) > (max) ? (max) : ((v) < (min) ? (min) : (v)))
+
+SoundPlayer sound_player;
+
 
 VectorND<int> my_play, my_play_length;
 NeuralNetwork nn_;
@@ -35,66 +36,80 @@ void myplaysoundnt(int note)
 	{
 	case 0:
 		printf("C ");
+		sound_player.playSound("25");
+		//TODO: play sound
 		//PlaySound(TEXT("sound_files/25.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 1:
 		printf("D ");
+		sound_player.playSound("27");
 		//PlaySound(TEXT("sound_files/27.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 2:
 		printf("E ");
+		sound_player.playSound("29");
 		//PlaySound(TEXT("sound_files/29.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 3:
 		printf("F ");
+		sound_player.playSound("30");
 		//PlaySound(TEXT("sound_files/30.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 4:
 		printf("G ");
+		sound_player.playSound("32");
 		//PlaySound(TEXT("sound_files/32.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 5:
 		printf("A ");
+		sound_player.playSound("34");
 		//PlaySound(TEXT("sound_files/34.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 6:
 		printf("B ");
+		sound_player.playSound("36");
 		//PlaySound(TEXT("sound_files/36.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 7:
 		printf("C ");
+		sound_player.playSound("37");
 		//PlaySound(TEXT("sound_files/37.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 8:
 		printf("C#-26 ");
+		sound_player.playSound("26");
 		//PlaySound(TEXT("sound_files/26.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 9:
 		printf("D#-28 ");
+		sound_player.playSound("28");
 		//PlaySound(TEXT("sound_files/28.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 10:
 		printf("F#-31 ");
+		sound_player.playSound("31");
 		//PlaySound(TEXT("sound_files/31.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 11:
 		printf("G#-33 ");
+		sound_player.playSound("33");
 		//PlaySound(TEXT("sound_files/33.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 
 	case 12:
 		printf("A#-35 ");
+		sound_player.playSound("35");
 		//PlaySound(TEXT("sound_files/35.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 		break;
 	}
@@ -103,9 +118,17 @@ void myplaysoundnt(int note)
 
 int main(int argc, char *argv[])
 {
-	SoundPlayer sound_player;
-
 	sound_player.init();
+
+	//TODO: read wave files
+	for (int i = 25; i <= 35; i++)
+	{
+		char filename[255];
+		std::sprintf(filename, "c:/github-repository/FMODTest/test/sound_files/%d.wav", i);
+
+		sound_player.addWav(std::to_string(i), std::string(filename));
+	}
+
 
 	nn_.initialize(7 * (8 + 1), 8 + 1, 1, 1);    // 8 keys + 1 length(0 to 7), input 7 histories
 
@@ -142,8 +165,8 @@ int main(int argc, char *argv[])
 		//myplaysoundnt(rand()%8);    // random play
 		
 		// uncomment if you want to listen recorded play
-		//myplaysoundnt(note);
-		//Sleep(length / 1.5);
+		myplaysoundnt(note);
+		Sleep(length / 1.5);
 	}
 
 	fclose(my_file);
@@ -202,7 +225,7 @@ int main(int argc, char *argv[])
 
 					myplaysoundnt(out_note);
 
-//					Sleep(output[8] * 2000.0);
+					Sleep(output[8] * 2000.0);
 				}
 			}
 			if (free_play == true)
@@ -225,7 +248,7 @@ int main(int argc, char *argv[])
 		{
 			myplaysoundnt(my_play[i]);
 
-//			Sleep(my_play_length[i]);
+			Sleep(my_play_length[i]);
 		}
 
 		for (int i = 0; i < my_play.num_dimension_ - 7; i++)

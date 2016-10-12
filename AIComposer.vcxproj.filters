@@ -35,6 +35,9 @@
     <ClInclude Include="MatrixMN.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoundPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="sound_files\25.MP3">

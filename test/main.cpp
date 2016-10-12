@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
 			*/
 			if ((int)midifile[track][event][0] == 0x90) {
 				cout << dec << (int)midifile[track][event][1] << ' ';
-				sound_player.playSound(std::to_string((int)midifile[track][event][1]-12*5));
+				sound_player.playSound(std::to_string((int)midifile[track][event][1]-20));
 				//myplaysoundnt((int)midifile[track][event][1]-60);
 				Sleep(100);
 			}

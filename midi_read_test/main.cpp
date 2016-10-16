@@ -10,8 +10,11 @@
 	- combine multiple channels to one array
 	- note length
 	- remove test folder
+	- It seems like our sound API doesn't have enough number of channels to play all sounds
 
 	3. Train with it
+
+	
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -26,10 +29,9 @@
 #include <windows.h>
 #include <mmsystem.h>
 
-#include "MidiFile.h"
+#include "MidiFileReader.h"
 #include "Options.h"
 #include <iomanip>
-using namespace std;
 
 #define CLAMP(v, min, max)		((v) > (max) ? (max) : ((v) < (min) ? (min) : (v)))
 
@@ -43,40 +45,13 @@ int main(int argc, char *argv[])
 	sound_player.init();
 	sound_player.readWavFileSequence("../sound_files/piano88/Piano %03d.wav", 1, 88, false);
 
-	//TODO: read midi file and play
-	MidiFile midifile;
-	midifile.read("./Etude_op10_n01.mid");
+	// parse midi file
+	MidiFileReader my_midi_file_reader;
+	my_midi_file_reader.sound_player_ = &sound_player;
+	my_midi_file_reader.read("../midi_files/Classic/Haendel/Harpsichord Suite n1 Hwv426 1mov.mid", false);
 
-	int tracks = midifile.getTrackCount();
-	cout << "TPQ: " << midifile.getTicksPerQuarterNote() << endl;
-	if (tracks > 1) {
-		cout << "TRACKS: " << tracks << endl;
-	}
-
-	for (int track = 0; track < tracks; track++)
-		//int track = 0; // print first track only
-	{
-		if (tracks > 1) {
-			cout << "\nTrack " << track << endl;
-		}
-		for (int event = 0; event < midifile[track].size(); event++) {
-			cout << dec << midifile[track][event].tick;
-			cout << '\t' << hex;\
-			/*
-			for (int i = 0; i<midifile[track][event].size(); i++) {
-				cout << dec << (int)midifile[track][event][i] << ' ';
-			}
-			cout << endl;
-			*/
-			if ((int)midifile[track][event][0] == 0x90) {
-				cout << dec << (int)midifile[track][event][1] << ' ';
-				sound_player.playSound(std::to_string((int)midifile[track][event][1]-20));
-				//myplaysoundnt((int)midifile[track][event][1]-60);
-				Sleep(100);
-			}
-			cout << endl;
-		}
-	}
+	// test play midi data
+	my_midi_file_reader.playEventList();
 
 	int temp;
 	std::cin >> temp;

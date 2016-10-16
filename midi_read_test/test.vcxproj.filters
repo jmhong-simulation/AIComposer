@@ -51,6 +51,9 @@
     <ClInclude Include="..\craigsapp-midifile-462f55a\include\Options.h">
       <Filter>craigsapp</Filter>
     </ClInclude>
+    <ClInclude Include="MidiFileReader.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

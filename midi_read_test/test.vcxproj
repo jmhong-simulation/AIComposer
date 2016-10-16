@@ -154,6 +154,7 @@
     <ClInclude Include="..\craigsapp-midifile-462f55a\include\Options.h" />
     <ClInclude Include="Array1D.h" />
     <ClInclude Include="MatrixMN.h" />
+    <ClInclude Include="MidiFileReader.h" />
     <ClInclude Include="NeuralNetwork.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="VectorND.h" />

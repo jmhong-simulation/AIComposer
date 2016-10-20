@@ -48,7 +48,9 @@ int main(int argc, char *argv[])
 	// parse midi file
 	MidiFileReader my_midi_file_reader;
 	my_midi_file_reader.sound_player_ = &sound_player;
-	my_midi_file_reader.read("../midi_files/Classic/Haendel/Harpsichord Suite n1 Hwv426 1mov.mid", false);
+//	my_midi_file_reader.read("../midi_files/Classic/Haendel/Harpsichord Suite n1 Hwv426 1mov.mid", false);
+	my_midi_file_reader.read("Etude_op10_n01.mid", false);
+	
 
 	// test play midi data
 	my_midi_file_reader.playEventList();

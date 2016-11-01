@@ -16,7 +16,7 @@ public:
 	{
 		int tick_;
 		int note_;
-		int duration_; // ms?
+		int duration_; // TODO: need to convert from tick to ms
 	};
 	
 	std::list<Event> event_list_;
@@ -29,7 +29,7 @@ public:
 			exit(-1);
 		}
 
-		const int TRQ_scaler = 1;
+		const float TRQ_scaler = 13.0f;
 
 		int prev_tick = event_list_.begin()->tick_;
 
@@ -39,18 +39,23 @@ public:
 
 		while (itr != event_list_.end())
 		{
-			//std::cout << dec << (*itr).tick_<<" current tick " << current_tick << std::endl;
-			int count = 0;
+
+			int num_notes_to_play = 0; // hormony
 			while ((*itr).tick_ == current_tick)
 			{
-				std::cout << dec << (*itr).tick_ << " " <<count<< std::endl;
+				std::cout << dec << (*itr).tick_ << " " <<num_notes_to_play<<" "
+					      << (*itr).note_ << " "<< (*itr).duration_ << std::endl;
+				
 				sound_player_->playSound(std::to_string((*itr).note_));
-				itr++; count++;
+				
+				itr++; 
+				num_notes_to_play++;
 			}
 			
 			current_tick += tick_dt;
 
-			Sleep(10* TRQ_scaler);
+			//Sleep(TRQ_scaler * (*itr).duration_); // current implementation doesn't make use of duration
+			Sleep(TRQ_scaler);
 		}
 
 		//for (auto itr : event_list_)
@@ -121,12 +126,13 @@ public:
 				{
 					const int note = midifile[track][event].getKeyNumber() - 20;
 
-					//for (auto itr : event_list_)
+					// find latest play event of this note
 					for(auto itr = event_list_.rbegin(); itr != event_list_.rend(); ++itr)
 					{
 						if ((*itr).note_ == note)
 						{
 							(*itr).duration_ = midifile[track][event].tick - (*itr).tick_;
+
 							std::cout << dec << (*itr).duration_ << "-end ";
 							break;
 						}

@@ -6,6 +6,7 @@
 #include "SoundPlayer.h"
 #include <list>
 #include <algorithm>
+#include <windows.h>
 
 class MidiFileReader
 {
@@ -18,138 +19,13 @@ public:
 		int note_;
 		int duration_; // TODO: need to convert from tick to ms
 	};
-	
+		
+	int tick_start_;
+	int tick_end_;
+
 	std::list<Event> event_list_;
 
-	void playEventList()
-	{
-		if (sound_player_ == nullptr)
-		{
-			std::cout << "Sound player is not set" << std::endl;
-			exit(-1);
-		}
+	void playEventList() const;
 
-		const float TRQ_scaler = 13.0f;
-
-		int prev_tick = event_list_.begin()->tick_;
-
-		auto itr = event_list_.begin();
-		int current_tick = 0;
-		const int tick_dt = 10;
-
-		while (itr != event_list_.end())
-		{
-
-			int num_notes_to_play = 0; // hormony
-			while ((*itr).tick_ == current_tick)
-			{
-				std::cout << dec << (*itr).tick_ << " " <<num_notes_to_play<<" "
-					      << (*itr).note_ << " "<< (*itr).duration_ << std::endl;
-				
-				sound_player_->playSound(std::to_string((*itr).note_));
-				
-				itr++; 
-				num_notes_to_play++;
-			}
-			
-			current_tick += tick_dt;
-
-			//Sleep(TRQ_scaler * (*itr).duration_); // current implementation doesn't make use of duration
-			Sleep(TRQ_scaler);
-		}
-
-		//for (auto itr : event_list_)
-		//{
-		//	std::cout << std::dec << itr.tick_ << " "<< itr.note_<< std::endl;
-
-		//	Sleep((itr.tick_ - prev_tick) * TRQ_scaler);	
-		//	//Sleep(1000);
-
-		//	prev_tick = itr.tick_;
-
-		//	sound_player_->playSound(std::to_string(itr.note_));
-		//}
-	}
-
-	//TODO: don't test play here.
-	//      make a play data array and play it after reading.
-	void read(const std::string& filename, const bool& test_play = false)	// TODO: add output parameters
-	{
-		MidiFile midifile;
-		midifile.read(filename.c_str());
-
-		const int num_tracks = midifile.getTrackCount();
-		std::cout << "Ticks Per Quater Note = " << midifile.getTicksPerQuarterNote() << std::endl;
-
-		if (num_tracks > 1)
-		{
-			std::cout << "Number of Tracks = " << num_tracks << std::endl;
-		}
-
-		for (int track = 0; track < num_tracks; track++)
-		//for (int track = 1; track < num_tracks; track++) //TODO: track 0 and 1 are duplicated ?
-		{
-			std::cout << "Start Reading Track " << track << std::endl;
-
-			for (int event = 0; event < midifile[track].size(); event++)
-			{
-				std::cout << std::dec << midifile[track][event].tick;
-				std::cout << '\t' << std::hex;
-
-				if (midifile[track][event].isNoteOn() == true) // 144 = 0x90
-				{
-					const int note = midifile[track][event].getKeyNumber() - 20;
-
-					/*if (!(note >= 1 && note <= 88))
-					{
-						std::cout << "Invalid note " << dec << note << ' ';
-						continue;
-					}*/
-
-					std::cout << dec << note << "-start ";
-
-					if (sound_player_ != nullptr && test_play == true)
-					{
-						sound_player_->playSound(std::to_string(note));
-
-						Sleep(100);
-					}
-
-					Event new_event;
-					new_event.tick_ = midifile[track][event].tick;
-					new_event.note_ = note;
-
-					event_list_.push_back(new_event);
-				}
-
-				else if (midifile[track][event].isNoteOff() == true)
-				{
-					const int note = midifile[track][event].getKeyNumber() - 20;
-
-					// find latest play event of this note
-					for(auto itr = event_list_.rbegin(); itr != event_list_.rend(); ++itr)
-					{
-						if ((*itr).note_ == note)
-						{
-							(*itr).duration_ = midifile[track][event].tick - (*itr).tick_;
-
-							std::cout << dec << (*itr).duration_ << "-end ";
-							break;
-						}
-					}
-				}
-
-
-				std::cout << std::endl;
-			}
-
-		}
-
-		//std::sort(event_list_.begin(), event_list_.end(), [](Event a, Event b) {
-		//	return b.tick_ < a.tick_;
-		//});
-		event_list_.sort([](Event a, Event b) {
-				return b.tick_ > a.tick_;
-			});
-	}
+	void read(const std::string& filename, const bool& test_play = false);	// TODO: add output parameters	
 };

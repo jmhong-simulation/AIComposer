@@ -7,6 +7,7 @@
 #pragma once
 
 #include "VectorND.h"
+#include <fstream>
 
 template<class T>
 class MatrixMN
@@ -29,4 +30,26 @@ public:
 	T&  getValue(const int& row, const int& column) const;
 
 	void cout();
+
+	void read(std::ifstream& is)
+	{
+		int num_rows_input, num_cols_input;
+
+		is.read((char*)&num_rows_input, sizeof(num_rows_input));
+		is.read((char*)&num_cols_input, sizeof(num_cols_input));
+
+		initialize(num_rows_input, num_cols_input, false);
+
+		for (int i = 0; i < num_rows_input * num_cols_input; i++)
+			is.read((char*)&values_[i], sizeof(T));
+	}
+
+	void write(std::ofstream& os) const
+	{
+		os.write((char*)&num_rows_, sizeof(num_rows_));
+		os.write((char*)&num_cols_, sizeof(num_cols_));
+
+		for (int i = 0; i < num_rows_ * num_cols_; i++)
+			os.write((char*)&values_[i], sizeof(T));
+	}
 };

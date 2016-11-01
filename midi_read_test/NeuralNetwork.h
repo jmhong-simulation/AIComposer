@@ -115,7 +115,7 @@ public:
 
             // random initialization
             for (int ix = 0; ix < weights_[l].num_rows_ * weights_[l].num_cols_; ix++)
-                weights_[l].values_[ix] = rand()/(float)RAND_MAX * 0.1;
+                weights_[l].values_[ix] = rand()/(float)RAND_MAX * 0.01;
         }
 
         // backup weights
@@ -127,7 +127,7 @@ public:
 
                                                                                                                      // random initialization
             for (int ix = 0; ix < weights_backup_[l].num_rows_ * weights_backup_[l].num_cols_; ix++)
-                weights_backup_[l].values_[ix] = rand() / (float)RAND_MAX * 0.1;
+                weights_backup_[l].values_[ix] = rand() / (float)RAND_MAX * 0.01;
         }
 
         // Temporary array to store weight matrices from previous step for momentum term.

@@ -101,10 +101,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\craigsapp-midifile-462f55a\include;..\SDL2_mixer-devel-2.0.1-VC\SDL2_mixer-2.0.1\include;..\SDL2-2.0.4\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\SDL2-2.0.4\lib\x64;..\SDL2_mixer-devel-2.0.1-VC\SDL2_mixer-2.0.1\lib\x64;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_mixer.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -156,6 +159,7 @@
     <ClInclude Include="MatrixMN.h" />
     <ClInclude Include="MidiFileReader.h" />
     <ClInclude Include="NeuralNetwork.h" />
+    <ClInclude Include="NotesTickTable.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="VectorND.h" />
   </ItemGroup>
@@ -168,6 +172,7 @@
     <ClCompile Include="..\craigsapp-midifile-462f55a\src-library\Options.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixMN.cpp" />
+    <ClCompile Include="MidiFileReader.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

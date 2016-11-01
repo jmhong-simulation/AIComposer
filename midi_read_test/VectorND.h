@@ -8,6 +8,7 @@
 
 #include <assert.h>
 #include <iostream>
+#include <fstream>
 
 #define SAFE_DELETE(pointer) if(pointer != nullptr){delete pointer; pointer=nullptr;}
 
@@ -202,6 +203,26 @@ public:
             values_[start_ix_this + i] = source.values_[start_ix_source + i];
         }
     }
+
+	void read(std::ifstream& is)
+	{
+		int num_dimension_input;
+
+		is.read((char*)&num_dimension_input, sizeof(num_dimension_input));
+
+		initialize(num_dimension_input);
+
+		for (int i = 0; i < num_dimension_input; i++)
+			is.read((char*)&values_[i], sizeof(TT));
+	}
+
+	void write(std::ofstream& os) const
+	{
+		os.write((char*)&num_dimension_, sizeof(num_dimension_));
+
+		for (int i = 0; i < num_dimension_; i++)
+			os.write((char*)&values_[i], sizeof(TT));
+	}
 };
 
 template<class TT>

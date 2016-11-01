@@ -54,6 +54,9 @@
     <ClInclude Include="MidiFileReader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="NotesTickTable.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,6 +84,9 @@
       <Filter>craigsapp</Filter>
     </ClCompile>
     <ClCompile Include="SoundPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MidiFileReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

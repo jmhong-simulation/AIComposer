@@ -56,12 +56,12 @@ int main(int argc, char *argv[])
 	my_midi_file_reader.sound_player_ = &sound_player;
 //	my_midi_file_reader.read("../midi_files/Classic/Haendel/Harpsichord Suite n1 Hwv426 1mov.mid", false);
 	//my_midi_file_reader.read("Etude_op10_n01.mid", false);
-	my_midi_file_reader.read("C:\\github-repository\\AIComposer\\midi_files\\Beethoven\\mond_1_format0.mid", false);
+	my_midi_file_reader.read("d:\\github-repository\\AIComposer\\midi_files\\Beethoven\\mond_1_format0.mid", false);
 	
 	// test play midi data
 	//my_midi_file_reader.playEventList();
 
-	const int d_tick = 10;
+	const int d_tick = 160;
 	NotesTickTable<D> table_(88, (my_midi_file_reader.tick_end_ - my_midi_file_reader.tick_start_) / d_tick + 1);
 
 	// fill notes tick table from play event list
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	}
 
 	// test play notes-tick table
-	const bool test_play_table = false;
+	const bool test_play_table = true;
 
 	if(test_play_table)
 	{
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 
 			std::cout << std::endl;
 
-			Sleep(13);
+			Sleep(13*16*1.5f);
 		}
 
 		std::cout << "Test play end" << std::endl;
@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
 
 	// initialize nn
 
-	const int num_histories = 20;
+	const int num_histories = 24;
 	const int num_all_notes = 88;
 
 	nn_.initialize(num_histories * num_all_notes, num_all_notes, 1, 1);
@@ -200,7 +200,7 @@ int main(int argc, char *argv[])
 
 			D cost_per_tr = 0.0;
 
-			for (int i = 0; i < table_.table_.size() / 500; i++)
+			for (int i = 0; i < table_.table_.size(); i++)
 			{
 				if (kbhit() != 0)
 				{
@@ -267,7 +267,7 @@ int main(int argc, char *argv[])
 
 					std::cout << std::endl;
 
-					Sleep(13);
+					Sleep(13*16);
 				}
 			}			
 
